@@ -28,7 +28,7 @@ function sign() {
     let result = JSON.parse(data)
     let title = `${cookieName}`
     // 获取任务
-    if (result && result.code == 200) {
+    if (result && result.code == 0) {
       let subTitle = `获取结果: 成功`
       let detail = `账号信息: ${result.data.credit}/${result.data.my_credit}星币, 说明: ${result.data.text}`
       chavy.msg(title, subTitle, detail)
@@ -40,7 +40,7 @@ function sign() {
     // 签到失败
     else {
       let subTitle = `签到结果: 失败`
-      let detail = `说明: ${result.data.credit}`
+      let detail = `说明: ${result.message}`
       chavy.msg(title, subTitle, detail)
     }
     chavy.log(`${cookieName}, data: ${data}`)

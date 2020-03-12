@@ -1,13 +1,20 @@
 const cookieName = 'cangku'
 const cookieKey = 'chavy_cookie_cangku'
+const tokenKey = 'chavy_token_cangkun'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
+const tokenVal = $request.headers['access_token']
 if (cookieVal) {
   if (chavy.setdata(cookieVal, cookieKey)) {
     chavy.msg(`${cookieName}`, '获取Cookie: 成功', '')
     chavy.log(`[${cookieName}] 获取Cookie: 成功, cookie: ${cookieVal}`)
   }
+  if (chavy.setdata(tokenVal, tokenKey)) {
+    chavy.msg(`${cookieName}`, '获取Token: 成功', '')
+    chavy.log(`[${cookieName}] 获取Token: 成功, token: ${tokenVal}`)
+  }
 }
+
 function init() {
   isSurge = () => {
     return undefined === this.$httpClient ? false : true
