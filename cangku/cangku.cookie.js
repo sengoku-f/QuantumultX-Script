@@ -1,11 +1,3 @@
-/*
-
-[rewrite_local]
-^http?:\/\/cangku\.moe url script-request-header sengoku/cangku/cangku.cookie.js
-[mitm]
-cangku.com
-
-*/
 const cookieName = 'cangku'
 const cookieKey = 'chavy_cookie_cangku'
 const chavy = init()
