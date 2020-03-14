@@ -1,7 +1,7 @@
 /*
 
 [rewrite_local]
-^http?:\/\/flycloud\.win\/user url script-request-header sengoku/flycloud/flycloud.cookie.js
+^https?:\/\/flycloud\.win\/user url script-request-header sengoku/flycloud/flycloud.cookie.js
 [mitm]
 flycloud.win
 
