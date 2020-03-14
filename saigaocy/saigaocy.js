@@ -29,13 +29,13 @@ function sign() {
     let result = JSON.parse(data)
     let title = `${cookieName}`
     // 签到成功
-    if (result && result.mission.credit > 0) {
+    if (result && result.mission) {
       let subTitle = `签到结果: 成功🎉`
-      let detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币`
+      let detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
       chavy.msg(title, subTitle, detail)
     }
     // 签到重复
-    else if (result && result.value > 0) {
+    else if (result > 0) {
       getsigninfo()
     }
     // 签到失败
@@ -67,7 +67,7 @@ function getsigninfo() {
     let subTitle = `签到结果: 成功 (重复签到)`
     let detail = ``
     let result = JSON.parse(data)
-    if (result && result.mission.credit > 0) detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币`
+    if (result && result.mission.credit > 0) detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
     chavy.msg(title, subTitle, detail)
   })
 }
