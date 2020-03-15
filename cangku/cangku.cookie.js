@@ -1,9 +1,9 @@
-const cookieName = 'cangku'
+const cookieName = '绅士仓库'
 const cookieKey = 'chavy_cookie_cangku'
-const tokenKey = 'chavy_token_cangkun'
+const tokenKey = 'chavy_token_cangku'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
-const tokenVal = $request.headers['access_token']
+const tokenVal = $request.headers['X-XSRF-TOKEN']
 if (cookieVal) {
   if (chavy.setdata(cookieVal, cookieKey)) {
     chavy.msg(`${cookieName}`, '获取Cookie: 成功', '')

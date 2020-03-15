@@ -5,10 +5,12 @@
 
 */
 
-const cookieName = 'cangku'
+const cookieName = '绅士仓库'
 const cookieKey = 'chavy_cookie_cangku'
+const tokenKey = 'chavy_token_cangku'
 const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)
+const tokenVal = chavy.getdata(tokenKey)
 
 sign()
 
@@ -19,6 +21,7 @@ function sign() {
       Cookie: cookieVal
     }
   }
+  url.headers['x-xsrf-token'] = `${tokenVal}`
   url.headers['Origin'] = 'https://cangku.moe'
   url.headers['Referer'] = 'https://cangku.moe/'
   url.headers['path'] = '/api/v1/user/signin'
@@ -30,8 +33,8 @@ function sign() {
     let title = `${cookieName}`
     // 获取任务
     if (result && result.code == 0) {
-      let subTitle = `获取结果: 成功`
-      let detail = `获得经验: ${result.data.exp}, 累计签到${result.data.continuous_signin}天, 说明: ${result.data.point}`
+      let subTitle = `签到结果: 成功🎉`
+      let detail = `获得经验: +${result.data.exp}EXP, 累计签到: ${result.data.continuous_signin}天, 说明: ${result.message}`
       chavy.msg(title, subTitle, detail)
     }
     // 签到重复
@@ -40,7 +43,7 @@ function sign() {
     }
     // 签到失败
     else {
-      let subTitle = `签到结果: 失败`
+      let subTitle = `签到结果: 失败❗️`
       let detail = `说明: ${result.message}`
       chavy.msg(title, subTitle, detail)
     }
@@ -56,18 +59,19 @@ function getsigninfo() {
       Cookie: cookieVal
     }
   }
-  // url.headers['Origin'] = 'https://saigaocy.moe'
+  url.headers['x-xsrf-token'] = `${tokenVal}`
   url.headers['Referer'] = 'https://cangku.moe/user/227336/post'
   url.headers['Accept'] = 'application/json, text/plain, */*'
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
 
-  chavy.post(url, (error, response, data) => {
+  chavy.get(url, (error, response, data) => {
     let title = `${cookieName}`
     let subTitle = `签到结果: 成功 (重复签到)`
     let detail = ``
     let result = JSON.parse(data)
-    if (result && result.code == 0) detail = `账号等级: Lv.${result.data.level}, 累计经验: +${result.data.exp}EXP, 说明: ${result.data.nickname}`
+    if (result && result.code == 0) detail = `账号等级: Lv.${result.data.level}, 累计经验: +${result.data.exp}EXP, 说明: ${result.message}`
     chavy.msg(title, subTitle, detail)
+    chavy.log(`${cookieName}重复签到, data: ${data}`)
   })
 }
 function init() {
