@@ -1,7 +1,7 @@
 /*
 
 [task_local]
-6 9 * * *  saigaocy.js
+6 9 * * *  saigaocy.mission.js
 
 */
 
@@ -10,9 +10,42 @@ const cookieKey = 'chavy_cookie_saigaocy'
 const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)
 
-sign()
+getUserMission()
+function getUserMission() {
+  let url = {
+    url: `https://saigaocy.moe/wp-json/b2/v1/getUserMission`,
+    headers: {
+      Cookie: cookieVal
+    }
+  }
+  url.headers['Origin'] = 'https://saigaocy.moe'
+  url.headers['Referer'] = 'https://saigaocy.moe/mission/today'
+  url.headers['path'] = '/wp-json/b2/v1/getUserMission'
+  url.headers['Accept'] = 'application/json, text/plain, */*'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
 
-function sign() {
+  chavy.post(url, (error, response, data) => {
+    let result = JSON.parse(data)
+    let title = `${cookieName}获取签到任务`
+    // 获取信息,判断星币大于0
+    if (result && result.mission.credit > 0) {
+      let subTitle = `获取结果: 成功🎉`
+      let detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
+      chavy.msg(title, subTitle, detail)
+      userMission()
+    }
+    // 获取失败
+    else {
+      let subTitle = `获取结果: 失败❗️`
+      let detail = `说明: ${result.message}, 日志: ${data}`
+      chavy.msg(title, subTitle, detail)
+    }
+    chavy.log(`${cookieName}获取签到任务, data: ${data}`)
+  })
+
+  chavy.done()
+}
+function userMission() {
   let url = {
     url: `https://saigaocy.moe/wp-json/b2/v1/userMission`,
     headers: {
@@ -27,7 +60,7 @@ function sign() {
 
   chavy.post(url, (error, response, data) => {
     let result = JSON.parse(data)
-    let title = `${cookieName}`
+    let title = `${cookieName}签到`
     // 签到成功
     if (result && result.mission) {
       let subTitle = `签到结果: 成功🎉`
@@ -36,7 +69,7 @@ function sign() {
     }
     // 签到重复
     else if (result > 0) {
-      getsigninfo()
+      getuserinfo()
     }
     // 签到失败
     else {
@@ -44,12 +77,10 @@ function sign() {
       let detail = `说明: ${result.message}, 日志: ${data}`
       chavy.msg(title, subTitle, detail)
     }
-    chavy.log(`${cookieName}, data: ${data}`)
+    chavy.log(`${cookieName}签到, data: ${data}`)
   })
-
-  chavy.done()
 }
-function getsigninfo() {
+function getuserinfo() {
   let url = {
     url: `https://saigaocy.moe/wp-json/b2/v1/getUserMission`,
     headers: {
@@ -63,7 +94,7 @@ function getsigninfo() {
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
 
   chavy.post(url, (error, response, data) => {
-    let title = `${cookieName}`
+    let title = `${cookieName}签到`
     let subTitle = `签到结果: 成功 (重复签到)`
     let detail = ``
     let result = JSON.parse(data)

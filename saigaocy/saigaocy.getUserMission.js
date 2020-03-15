@@ -1,11 +1,11 @@
 /*
 
 [task_local]
-6 9 * * *  saigaocy.js
+6 9 * * *  saigaocy.getUserMission.js
 
 */
 
-const cookieName = 'saigaocy'
+const cookieName = '赛高次元'
 const cookieKey = 'chavy_cookie_saigaocy'
 const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)

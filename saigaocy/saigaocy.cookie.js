@@ -7,7 +7,7 @@ saigaocy.com
 
 */
 
-const cookieName = 'saigaocy'
+const cookieName = '赛高次元'
 const cookieKey = 'chavy_cookie_saigaocy'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
