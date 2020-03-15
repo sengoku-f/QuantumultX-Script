@@ -12,9 +12,9 @@ acg.ge
 
 [rewrite_local]
 # 189及以前版本
-^https:\/\/acg.ge url script-response-body  xinciyuan.cookie.js
+^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-response-body  xinciyuan.cookie.js
 # 190及以后版本
-^https:\/\/acg.ge url script-request-header xinciyuan.cookie.js
+^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-request-header xinciyuan.cookie.js
 
 [task_local]
 1 0 * * * xinciyuan.js
@@ -25,10 +25,10 @@ acg.ge
 1. 先在浏览器登录 `(先登录! 先登录! 先登录!)`
 2. 先把`acg.ge`加到`[MITM]`
 3. 再配置重写规则:
-   - QuanX: 把`acg.ge.cookie.js`和`acg.ge.js`传到`On My iPhone - Quantumult X - Scripts` (传到 iCloud 相同目录也可, 注意要打开 quanx 的 iCloud 开关)
-4. 打开浏览器访问: https://acg.ge
-5. 系统提示: `获取Cookie: 成功`
-6. 最后就可以把第 1 条脚本注释掉了
+   - QuanX: 把`xinciyuan.cookie.js`和`xinciyuan.js`传到`On My iPhone - Quantumult X - Scripts` (传到 iCloud 相同目录也可, 注意要打开 quanx 的 iCloud 开关)
+4. 打开浏览器访问: https://acg.ge 然后手动签到 1 次, 系统提示: `获取Cookie: 成功` , `获取Token: 成功`
+5. 最后就可以把第 1 条脚本注释掉了
+6. 运行一次脚本, 如果提示重复签到, 那就算成功了!
 
 > 第 1 条脚本是用来获取 cookie 的, 用浏览器访问一次获取 cookie 成功后就可以删掉或注释掉了, 但请确保在`登录成功`后再获取 cookie.
 
