@@ -1,21 +1,27 @@
 const cookieName = '芯次元'
 const cookieKey = 'chavy_cookie_xinciyuan'
+const tokenKey = 'chavy_token_xinciyuan'
 const chavy = init()
-const cookieVal = chavy.getdata(cookieKey)
+let cookieVal = chavy.getdata(cookieKey)
+let tokenVal = chavy.getdata(tokenKey)
 
 sign()
 
 function sign() {
+  const token = JSON.parse(tokenVal)
   let url = {
-    url: `https://acg.ge/wp-admin/admin-ajax.php`,
+    url: `https://acg.ge/wp-admin/admin-ajax.php?_nonce=${token._nonce}&action=${token.action}&type=goSign`,
     headers: {
       Cookie: cookieVal
     }
   }
-  url.headers['Referer'] = 'https://acg.ge/'
-  url.headers['Path'] = '/wp-admin/admin-ajax.php?_nonce=5940db0f04&action=0f00b9c5cfbbecc13be33c9d146f2d42&type=goSign'
   url.headers['Accept'] = '*/*'
+  url.headers['Accept-Language'] = `zh-CN,zh;q=0.9`
+  url.headers['Host'] = `acg.ge`
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['Referer'] = 'https://acg.ge/'
+  url.headers['Accept-Encoding'] = `gzip, deflate, br`
+  url.headers['Connection'] = `keep-alive`
 
   chavy.get(url, (error, response, data) => {
     let result = JSON.parse(data)
@@ -23,13 +29,13 @@ function sign() {
     // 签到成功
     if (result && result.code == 0) {
       let subTitle = `签到结果: 成功🎉`
-      let detail = `说明: ${result.data.msg}`
+      let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
     }
     // 签到失败
     else {
       let subTitle = `签到结果: 失败`
-      let detail = `说明: ${result.message}`
+      let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
     }
     chavy.log(`${cookieName}, data: ${data}`)

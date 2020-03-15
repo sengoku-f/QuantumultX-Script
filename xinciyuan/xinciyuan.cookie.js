@@ -1,5 +1,6 @@
 const cookieName = '芯次元'
 const cookieKey = 'chavy_cookie_xinciyuan'
+const tokenKey = 'chavy_token_xinciyuan'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
 if (cookieVal) {
@@ -8,6 +9,20 @@ if (cookieVal) {
     chavy.log(`[${cookieName}] 获取Cookie: 成功, cookie: ${cookieVal}`)
   }
 }
+
+const queryparam = $request.url.split('?')[1]
+if (queryparam) {
+  const params = {}
+  for (param of $request.url.split('?')[1].split('&')) {
+    params[param.split('=')[0]] = param.split('=')[1]
+  }
+  const token = JSON.stringify(params)
+  if (chavy.setdata(token, tokenKey)) {
+    chavy.msg(`${cookieName}`, '获取Token: 成功', '')
+    chavy.log(`[${cookieName}] 获取Token: 成功, token: ${token}`)
+  }
+}
+
 function init() {
   isSurge = () => {
     return undefined === this.$httpClient ? false : true
