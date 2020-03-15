@@ -11,7 +11,6 @@ const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)
 
 sign()
-
 function sign() {
   let url = {
     url: `https://www.flycloud.win/user/checkin`,
@@ -19,9 +18,9 @@ function sign() {
       Cookie: cookieVal
     }
   }
+  url.headers['Host'] = `flycloud.win`
   url.headers['Origin'] = 'https://www.flycloud.win'
   url.headers['Referer'] = 'https://www.flycloud.win/user'
-  url.headers['path'] = '/user/checkin'
   url.headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
 
