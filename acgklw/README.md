@@ -12,9 +12,9 @@ acgklw.co
 
 [rewrite_local]
 # 189及以前版本
-^https:\/\/acgklw\.co\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-response-body  acgklw.cookie.js
+^https:\/\/acgklw\.co\/wp-admin\/admin-ajax\.php\?action=.* url script-response-body  acgklw.cookie.js
 # 190及以后版本
-^https:\/\/acgklw\.co\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-request-header acgklw.cookie.js
+^https:\/\/acgklw\.co\/wp-admin\/admin-ajax\.php\?action=.* url script-request-header acgklw.cookie.js
 
 [task_local]
 1 0 * * * acgklw.js

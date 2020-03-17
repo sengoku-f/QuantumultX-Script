@@ -1,16 +1,49 @@
 const cookieName = '芯次元'
 const cookieKey = 'chavy_cookie_xinciyuan'
-const tokenKey = 'chavy_token_xinciyuan'
 const chavy = init()
 let cookieVal = chavy.getdata(cookieKey)
-let tokenVal = chavy.getdata(tokenKey)
 
-sign()
-
-function sign() {
-  const token = JSON.parse(tokenVal)
+getHomepagePosts()
+function getHomepagePosts() {
   let url = {
-    url: `https://acg.ge/wp-admin/admin-ajax.php?_nonce=${token._nonce}&action=${token.action}&type=goSign`,
+    url: `https://acg.ge/wp-admin/admin-ajax.php?action=e571040b22019a44af3119898364bfdf&0f00b9c5cfbbecc13be33c9d146f2d42%5Btype%5D=checkSigned&612fcd33343081a6015f71c070c8c9f1%5Btype%5D=checkUnread&1d53021ff5177e7590969a5ee570e5ea%5Btype%5D=getUnreadCount&2eaeae45d46d5bdb31e379c7d57c2ea8%5Btype%5D=getHomepagePosts`,
+    headers: {
+      Cookie: cookieVal
+    }
+  }
+  url.headers['Accept'] = '*/*'
+  url.headers['Accept-Language'] = `zh-CN,zh;q=0.9`
+  url.headers['Host'] = `acg.ge`
+  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['Referer'] = 'https://acg.ge/'
+  url.headers['Accept-Encoding'] = `gzip, deflate, br`
+  url.headers['Connection'] = `keep-alive`
+
+  chavy.get(url, (error, response, data) => {
+    let result = JSON.parse(data)
+    let title = `${cookieName}`
+    // 获取签到代码
+    if (result && result._nonce) {
+      let subTitle = `获取结果: 成功🎉`
+      let detail = `说明: ${result._nonce}`
+      nonceKey = `${result._nonce}`
+      chavy.msg(title, subTitle, detail)
+      goSign()
+    }
+    // 获取失败
+    else {
+      let subTitle = `获取结果: 失败❗️`
+      let detail = `说明: ${result.msg}`
+      chavy.msg(title, subTitle, detail)
+    }
+    chavy.log(`${cookieName}, data: ${nonceKey}`)
+  })
+
+  chavy.done()
+}
+function goSign() {
+  let url = {
+    url: `https://acg.ge/wp-admin/admin-ajax.php?_nonce=${nonceKey}&action=0f00b9c5cfbbecc13be33c9d146f2d42&type=goSign`,
     headers: {
       Cookie: cookieVal
     }
@@ -34,14 +67,12 @@ function sign() {
     }
     // 签到失败
     else {
-      let subTitle = `签到结果: 失败`
+      let subTitle = `签到结果: 失败❗️`
       let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
     }
     chavy.log(`${cookieName}, data: ${data}`)
   })
-
-  chavy.done()
 }
 
 function init() {

@@ -1,16 +1,49 @@
 const cookieName = '快乐屋'
 const cookieKey = 'chavy_cookie_acgklw'
-const tokenKey = 'chavy_token_acgklw'
 const chavy = init()
 let cookieVal = chavy.getdata(cookieKey)
-let tokenVal = chavy.getdata(tokenKey)
 
-sign()
-
-function sign() {
-  const token = JSON.parse(tokenVal)
+getHomepagePosts()
+function getHomepagePosts() {
   let url = {
-    url: `https://acgklw.co/wp-admin/admin-ajax.php?_nonce=${token._nonce}&action=${token.action}&type=goSign`,
+    url: `https://acgklw.co/wp-admin/admin-ajax.php?action=e4f966fd008dfebca670d6462f8bacfb&d7e9a1f71cd9672c3b1268d845e45a95%5Btype%5D=checkSigned&ffb1ea89b93e0af78e0d6d8c34766c5a%5Btype%5D=checkUnread&6b2d70517e1b9e78c0a47daea93b9246%5Btype%5D=getUnreadCount&4c952c795bb1e5e8b2132d8734bc7547%5Btype%5D=getHomepagePosts`,
+    headers: {
+      Cookie: cookieVal
+    }
+  }
+  url.headers['Accept'] = '*/*'
+  url.headers['Accept-Language'] = `zh-CN,zh;q=0.9`
+  url.headers['Host'] = `acgklw.co`
+  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['Referer'] = 'https://acgklw.co/'
+  url.headers['Accept-Encoding'] = `gzip, deflate, br`
+  url.headers['Connection'] = `keep-alive`
+
+  chavy.get(url, (error, response, data) => {
+    let result = JSON.parse(data)
+    let title = `${cookieName}`
+    // 获取签到代码
+    if (result && result._nonce) {
+      let subTitle = `获取结果: 成功🎉`
+      let detail = `说明: ${result._nonce}`
+      nonceKey = `${result._nonce}`
+      chavy.msg(title, subTitle, detail)
+      goSign()
+    }
+    // 获取失败
+    else {
+      let subTitle = `获取结果: 失败❗️`
+      let detail = `说明: ${result.msg}`
+      chavy.msg(title, subTitle, detail)
+    }
+    chavy.log(`${cookieName}, data: ${nonceKey}`)
+  })
+
+  chavy.done()
+}
+function goSign() {
+  let url = {
+    url: `https://acgklw.co/wp-admin/admin-ajax.php?_nonce=${nonceKey}&action=d7e9a1f71cd9672c3b1268d845e45a95&type=goSign`,
     headers: {
       Cookie: cookieVal
     }
@@ -34,14 +67,12 @@ function sign() {
     }
     // 签到失败
     else {
-      let subTitle = `签到结果: 失败`
+      let subTitle = `签到结果: 失败❗️`
       let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
     }
     chavy.log(`${cookieName}, data: ${data}`)
   })
-
-  chavy.done()
 }
 
 function init() {

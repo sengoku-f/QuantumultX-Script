@@ -12,9 +12,9 @@ acg.ge
 
 [rewrite_local]
 # 189及以前版本
-^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-response-body  xinciyuan.cookie.js
+^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?action=.* url script-response-body  xinciyuan.cookie.js
 # 190及以后版本
-^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?_nonce=.* url script-request-header xinciyuan.cookie.js
+^https:\/\/acg\.ge\/wp-admin\/admin-ajax\.php\?action=.* url script-request-header xinciyuan.cookie.js
 
 [task_local]
 1 0 * * * xinciyuan.js
