@@ -25,9 +25,10 @@ function getHomepagePosts() {
     // 获取签到代码
     if (result && result._nonce) {
       let subTitle = `获取结果: 成功🎉`
-      let detail = `说明: ${result._nonce}`
+      let detail = `签到代码: ${result._nonce}`
       nonceKey = `${result._nonce}`
-      chavy.msg(title, subTitle, detail)
+      // chavy.msg(title, subTitle, detail)
+      chavy.log(`${cookieName}获取签到代码, ${subTitle}, ${detail}`)
       goSign()
     }
     // 获取失败
@@ -35,8 +36,9 @@ function getHomepagePosts() {
       let subTitle = `获取结果: 失败❗️`
       let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
+      chavy.log(`${cookieName}获取签到代码, ${subTitle}, ${detail},  data: ${data}`)
     }
-    chavy.log(`${cookieName}, data: ${nonceKey}`)
+    chavy.log(`${cookieName}获取签到代码日志, 签到代码: ${nonceKey}`)
   })
 
   chavy.done()
