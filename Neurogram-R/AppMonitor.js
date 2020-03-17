@@ -2,7 +2,7 @@
 
  - App 价格版本监控
  
-cron: 0 8-22/1 * * * AppPricer.js
+cron: 0 8-22/1 * * * AppMonitor.js
  
  
 使用说明：https://www.notion.so/neurogram/App-Pricer-bb7f6877caa24e8584cc63bddf6e555a
@@ -13,7 +13,7 @@ GitHub: Neurogram-R
 */
 console.log("APP监控运行")
 let apps=["1443988620","499470113","1314212521","1282297037","932747118","1116905928","1442620678","1312014438"]//app跟踪id
-let reg="us"//区域：美国us 中国cn 香港hk
+let reg="ca"//区域：美国us 中国cn 香港hk
 let config={
   url:'https://itunes.apple.com/lookup?id=' + apps + "&country=" + reg,
   method:"post"
