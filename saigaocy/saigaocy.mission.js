@@ -30,8 +30,9 @@ function getUserMission() {
     // 获取信息,判断是否获取到用户信息
     if (result && result.mission) {
       let subTitle = `获取结果: 成功🎉`
-      let detail = `签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
-      chavy.msg(title, subTitle, detail)
+      let detail = `上次签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
+      // chavy.msg(title, subTitle, detail)
+      chavy.log(`${title}, ${subTitle}, ${detail}`)
       userMission()
     }
     // 获取失败
