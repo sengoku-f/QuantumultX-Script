@@ -1,40 +1,40 @@
 /*
 
 [task_local]
-6 9 * * *  sengoku/flycloud/flycloud.js
+6 9 * * *  sengoku/zds/zds.js
 
 */
 
-const cookieName = '飞云加速'
-const cookieKey = 'chavy_cookie_flycloud'
+const cookieName = '外卖最大社'
+const cookieKey = 'chavy_cookie_zds'
 const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)
 
 sign()
 function sign() {
   let url = {
-    url: `https://www.flycloud.win/user/checkin`,
+    url: `http://zds.xmanfulong.com/api/v1/user/signin`,
     headers: {
-      Cookie: cookieVal
+      Authorization: cookieVal
     }
   }
-  url.headers['Host'] = `flycloud.win`
-  url.headers['Origin'] = 'https://www.flycloud.win'
-  url.headers['Referer'] = 'https://www.flycloud.win/user'
-  url.headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['Host'] = `zds.xmanfulong.com`
+  url.headers['Origin'] = 'http://zds.xmanfulong.com'
+  url.headers['Referer'] = 'http://zds.xmanfulong.com/score'
+  url.headers['Accept'] = 'application/json, text/plain, */*'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.11(0x17000b21) NetType/WIFI Language/zh_CN'
 
   chavy.post(url, (error, response, data) => {
     let result = JSON.parse(data)
     let title = `${cookieName}`
     // 获取任务
-    if (result && result.ret == 1) {
+    if (result && result.code == 200) {
       let subTitle = `签到结果: 成功🎉`
-      let detail = `获得: ${result.msg}, 今日已用: ${result.trafficInfo.todayUsedTraffic}, 过去已用: ${result.trafficInfo.lastUsedTraffic}, 剩余流量: ${result.trafficInfo.unUsedTraffic}`
+      let detail = `签到奖励: ${result.data.score}积分`
       chavy.msg(title, subTitle, detail)
     }
     // 签到重复
-    else if (result && result.ret == 0) {
+    else if (result && result.code == 1017) {
       let subTitle = `签到结果: 成功 (重复签到)`
       let detail = `说明: ${result.msg}`
       chavy.msg(title, subTitle, detail)
