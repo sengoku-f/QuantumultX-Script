@@ -13,13 +13,13 @@ const cookieVal = chavy.getdata(cookieKey)
 sign()
 function sign() {
   let url = {
-    url: `https://saigaocy.moe/wp-json/b2/v1/getUserMission`,
+    url: `https://saigaocy.xyz/wp-json/b2/v1/getUserMission`,
     headers: {
       Cookie: cookieVal
     }
   }
-  url.headers['Origin'] = 'https://saigaocy.moe'
-  url.headers['Referer'] = 'https://saigaocy.moe/mission/today'
+  url.headers['Origin'] = 'https://saigaocy.xyz'
+  url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
@@ -50,13 +50,13 @@ function sign() {
 }
 // function getsigninfo() {
 //   let url = {
-//     url: `https://saigaocy.moe/wp-json/b2/v1/getUserMission`,
+//     url: `https://saigaocy.xyz/wp-json/b2/v1/getUserMission`,
 //     headers: {
 //       Cookie: cookieVal
 //     }
 //   }
-//   url.headers['Origin'] = 'https://saigaocy.moe'
-//   url.headers['Referer'] = 'https://saigaocy.moe/mission/today'
+//   url.headers['Origin'] = 'https://saigaocy.xyz'
+//   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
 //   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
 //   url.headers['Accept'] = 'application/json, text/plain, */*'
 //   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'

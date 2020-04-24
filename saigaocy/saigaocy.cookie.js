@@ -1,9 +1,9 @@
 /*
 
 [rewrite_local]
-^http?:\/\/saigaocy\.moe\/users url script-request-header saigaocy.cookie.js
+^https:\/\/saigaocy\.(moe|xyz)\/users url script-request-header saigaocy.cookie.js
 [mitm]
-saigaocy.com
+saigaocy.xyz
 
 */
 
