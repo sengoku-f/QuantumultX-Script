@@ -6,16 +6,16 @@ let cookieVal = chavy.getdata(cookieKey)
 getHomepagePosts()
 function getHomepagePosts() {
   let url = {
-    url: `https://acgklw.co/wp-admin/admin-ajax.php?action=e4f966fd008dfebca670d6462f8bacfb&d7e9a1f71cd9672c3b1268d845e45a95%5Btype%5D=checkSigned&ffb1ea89b93e0af78e0d6d8c34766c5a%5Btype%5D=checkUnread&6b2d70517e1b9e78c0a47daea93b9246%5Btype%5D=getUnreadCount&4c952c795bb1e5e8b2132d8734bc7547%5Btype%5D=getHomepagePosts`,
+    url: `https://luolita.co/wp-admin/admin-ajax.php?action=e4f966fd008dfebca670d6462f8bacfb&d7e9a1f71cd9672c3b1268d845e45a95%5Btype%5D=checkSigned&ffb1ea89b93e0af78e0d6d8c34766c5a%5Btype%5D=checkUnread&6b2d70517e1b9e78c0a47daea93b9246%5Btype%5D=getUnreadCount&4c952c795bb1e5e8b2132d8734bc7547%5Btype%5D=getHomepagePosts`,
     headers: {
       Cookie: cookieVal
     }
   }
   url.headers['Accept'] = '*/*'
   url.headers['Accept-Language'] = `zh-CN,zh;q=0.9`
-  url.headers['Host'] = `acgklw.co`
+  url.headers['Host'] = `luolita.co`
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
-  url.headers['Referer'] = 'https://acgklw.co/'
+  url.headers['Referer'] = 'https://luolita.co/'
   url.headers['Accept-Encoding'] = `gzip, deflate, br`
   url.headers['Connection'] = `keep-alive`
 
@@ -45,16 +45,16 @@ function getHomepagePosts() {
 }
 function goSign() {
   let url = {
-    url: `https://acgklw.co/wp-admin/admin-ajax.php?_nonce=${nonceKey}&action=d7e9a1f71cd9672c3b1268d845e45a95&type=goSign`,
+    url: `https://luolita.co/wp-admin/admin-ajax.php?_nonce=${nonceKey}&action=d7e9a1f71cd9672c3b1268d845e45a95&type=goSign`,
     headers: {
       Cookie: cookieVal
     }
   }
   url.headers['Accept'] = '*/*'
   url.headers['Accept-Language'] = `zh-CN,zh;q=0.9`
-  url.headers['Host'] = `acgklw.co`
+  url.headers['Host'] = `luolita.co`
   url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
-  url.headers['Referer'] = 'https://acgklw.co/'
+  url.headers['Referer'] = 'https://luolita.co/'
   url.headers['Accept-Encoding'] = `gzip, deflate, br`
   url.headers['Connection'] = `keep-alive`
 

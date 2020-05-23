@@ -8,7 +8,7 @@
 
 ```properties
 [MITM]
-acgklw.co
+luolita.co
 
 [rewrite_local]
 # 189及以前版本
@@ -23,10 +23,10 @@ acgklw.co
 ## 说明
 
 1. 先在浏览器登录 `(先登录! 先登录! 先登录!)`
-2. 先把`acgklw.co`加到`[MITM]`
+2. 先把`luolita.co`加到`[MITM]`
 3. 再配置重写规则:
    - QuanX: 把`acgklw.cookie.js`和`acgklw.js`传到`On My iPhone - Quantumult X - Scripts` (传到 iCloud 相同目录也可, 注意要打开 quanx 的 iCloud 开关)
-4. 打开浏览器访问: https://acgklw.co 然后手动签到 1 次, 系统提示: `获取Cookie: 成功` , `获取Token: 成功`
+4. 打开浏览器访问: https://luolita.co 然后手动签到 1 次, 系统提示: `获取Cookie: 成功` , `获取Token: 成功`
 5. 最后就可以把第 1 条脚本注释掉了
 6. 运行一次脚本, 如果提示重复签到, 那就算成功了!
 
