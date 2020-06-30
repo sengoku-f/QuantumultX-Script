@@ -7,8 +7,10 @@
 
 const cookieName = '赛高次元'
 const cookieKey = 'chavy_cookie_saigaocy'
+const authorizationKey = 'chavy_authorization_saigaocy'
 const chavy = init()
 const cookieVal = chavy.getdata(cookieKey)
+const authorizationVal = chavy.getdata(authorizationKey)
 
 getUserMission()
 function getUserMission() {
@@ -22,7 +24,8 @@ function getUserMission() {
   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
+  url.headers['Authorization'] = `${authorizationVal}`
 
   chavy.post(url, (error, response, data) => {
     let result = JSON.parse(data)
@@ -32,7 +35,8 @@ function getUserMission() {
       let subTitle = `获取结果: 成功🎉`
       let detail = `上次签到奖励: ${result.mission.credit}星币, 总计: ${result.mission.my_credit}星币, ${result.mission.date}`
       // chavy.msg(title, subTitle, detail)
-      chavy.log(`${title}, ${subTitle}, ${detail}`)
+      // 打印日志
+      // chavy.log(`${title}, ${subTitle}, ${detail}`)
       userMission()
     }
     // 获取失败
@@ -57,7 +61,8 @@ function userMission() {
   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/userMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
+  url.headers['Authorization'] = `${authorizationVal}`
 
   chavy.post(url, (error, response, data) => {
     let result = JSON.parse(data)
@@ -92,7 +97,8 @@ function getuserinfo() {
   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
+  url.headers['Authorization'] = `${authorizationVal}`
 
   chavy.post(url, (error, response, data) => {
     let title = `${cookieName}签到`

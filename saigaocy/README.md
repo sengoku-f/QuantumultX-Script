@@ -12,9 +12,10 @@ saigaocy.xyz
 
 [rewrite_local]
 # 远程版本
-^https:\/\/saigaocy\.(moe|xyz)\/users url script-request-header https://raw.githubusercontent.com/sengoku-f/QuantumultX-Script/master/saigaocy/saigaocy.cookie.js
+^https:\/\/saigaocy\.(moe|xyz)\/wp-json\/b2\/v1\/getUserInfo url script-request-header https://raw.githubusercontent.com/sengoku-f/QuantumultX-Script/master/saigaocy/saigaocy.cookie.js
 # 本地版本
-^https:\/\/saigaocy\.(moe|xyz)\/users url script-request-header sengoku/saigaocy/saigaocy.cookie.js
+
+^https:\/\/saigaocy\.(moe|xyz)\/wp-json\/b2\/v1\/getUserInfo url script-request-header saigaocy.cookie.js
 
 [task_local]
 1 0 * * * sengoku/saigaocy/saigaocy.js

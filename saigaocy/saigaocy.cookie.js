@@ -1,7 +1,7 @@
 /*
 
 [rewrite_local]
-^https:\/\/saigaocy\.(moe|xyz)\/users url script-request-header saigaocy.cookie.js
+^https:\/\/saigaocy\.(moe|xyz)\/wp-json\/b2\/v1\/getUserInfo url script-request-header saigaocy.cookie.js
 [mitm]
 saigaocy.xyz
 
@@ -9,12 +9,18 @@ saigaocy.xyz
 
 const cookieName = '赛高次元'
 const cookieKey = 'chavy_cookie_saigaocy'
+const authorizationKey = 'chavy_authorization_saigaocy'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
+const authorizationVal = $request.headers['Authorization']
 if (cookieVal) {
   if (chavy.setdata(cookieVal, cookieKey)) {
     chavy.msg(`${cookieName}`, '获取Cookie: 成功', '')
     chavy.log(`[${cookieName}] 获取Cookie: 成功, cookie: ${cookieVal}`)
+  }
+  if (chavy.setdata(authorizationVal, authorizationKey)) {
+    chavy.msg(`${cookieName}`, '获取authorization: 成功', '')
+    chavy.log(`[${cookieName}] 获取authorization: 成功, authorization: ${authorizationVal}`)
   }
 }
 function init() {

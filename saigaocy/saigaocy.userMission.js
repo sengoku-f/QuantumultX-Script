@@ -23,7 +23,8 @@ function sign() {
   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/userMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
+  url.headers['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FpZ2FvY3kueHl6IiwiaWF0IjoxNTkxNjMyMzE2LCJuYmYiOjE1OTE2MzIzMTYsImV4cCI6MTU5MjIzNzExNiwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMjgyMzkifX19.zJzOJLlbdU8eqHB0U1U4gZH4FrjmQCegWOL8-UeAqDM'
 
   chavy.post(url, (error, response, data) => {
     let result = JSON.parse(data)
@@ -60,7 +61,8 @@ function getsigninfo() {
   url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
-  url.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
+  url.headers['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FpZ2FvY3kueHl6IiwiaWF0IjoxNTkxNjMyMzE2LCJuYmYiOjE1OTE2MzIzMTYsImV4cCI6MTU5MjIzNzExNiwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMjgyMzkifX19.zJzOJLlbdU8eqHB0U1U4gZH4FrjmQCegWOL8-UeAqDM'
 
   chavy.post(url, (error, response, data) => {
     let title = `${cookieName}`
