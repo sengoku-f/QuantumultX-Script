@@ -15,13 +15,13 @@ const authorizationVal = chavy.getdata(authorizationKey)
 getUserMission()
 function getUserMission() {
   let url = {
-    url: `https://saigaocy.xyz/wp-json/b2/v1/getUserMission`,
+    url: `https://saigaocy.club/wp-json/b2/v1/getUserMission`,
     headers: {
       Cookie: cookieVal
     }
   }
-  url.headers['Origin'] = 'https://saigaocy.xyz'
-  url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
+  url.headers['Origin'] = 'https://saigaocy.club'
+  url.headers['Referer'] = 'https://saigaocy.club/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
   url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
@@ -52,13 +52,13 @@ function getUserMission() {
 }
 function userMission() {
   let url = {
-    url: `https://saigaocy.xyz/wp-json/b2/v1/userMission`,
+    url: `https://saigaocy.club/wp-json/b2/v1/userMission`,
     headers: {
       Cookie: cookieVal
     }
   }
-  url.headers['Origin'] = 'https://saigaocy.xyz'
-  url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
+  url.headers['Origin'] = 'https://saigaocy.club'
+  url.headers['Referer'] = 'https://saigaocy.club/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/userMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
   url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'
@@ -88,13 +88,13 @@ function userMission() {
 }
 function getuserinfo() {
   let url = {
-    url: `https://saigaocy.xyz/wp-json/b2/v1/getUserMission`,
+    url: `https://saigaocy.club/wp-json/b2/v1/getUserMission`,
     headers: {
       Cookie: cookieVal
     }
   }
-  url.headers['Origin'] = 'https://saigaocy.xyz'
-  url.headers['Referer'] = 'https://saigaocy.xyz/mission/today'
+  url.headers['Origin'] = 'https://saigaocy.club'
+  url.headers['Referer'] = 'https://saigaocy.club/mission/today'
   url.headers['path'] = '/wp-json/b2/v1/getUserMission'
   url.headers['Accept'] = 'application/json, text/plain, */*'
   url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1'

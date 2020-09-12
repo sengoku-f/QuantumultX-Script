@@ -3,7 +3,7 @@
 [rewrite_local]
 ^https:\/\/saigaocy\.(moe|xyz)\/wp-json\/b2\/v1\/getUserInfo url script-request-header saigaocy.cookie.js
 [mitm]
-saigaocy.xyz
+saigaocy.club
 
 */
 
